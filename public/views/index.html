@@ -6,26 +6,19 @@
   </head>
   <body>
     <h1>Mean Demo</h1>
-    <p>Welcome to Mean Demo</p 
-    <!-- meetup view-->
+    <p>Welcome to Mean Demo</p
     <div ng-controller="meetupsController">
-        <h1>
-            There are {{meetups.length}}  meetups.
-        </h1>
-        <ul>
-            <li ng-repeat ="meetup in meetups">
-               <a href="/meetup/{{meetup._id}}"> {{meetup.name}} </a>
-            </li>
-        </ul>
-        <form ng-submit="createMeetup()">
-            <input type="text" ng-model="meetupName" placeholder="Meetup name">
-            <button type="submit">Add</button>
-        </form>
+       <ng-view></ng-view>
     </div>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"> </script>
     <script type="text/javascript" 
     src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.min.js"></script>
+     <script type="text/javascript" 
+    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
     <script src="/javascripts/app.js"></script>
+    
     <script src="/controllers/meetups-controller.js"></script>
+    <script src="/route-configs/meetups-route-config.js"></script>
   </body>
 </html>

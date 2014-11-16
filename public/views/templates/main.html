@@ -1,0 +1,21 @@
+<a href="/#/create">Create New Meetup</a> 
+<h1>
+    There are {{meetups.length}}  meetups.
+</h1>
+<ul>
+    <li ng-repeat ="meetup in meetups">
+      <!--  <a href="/#/{{meetup._id}}"> {{meetup.name}} </a>-->
+      <table>
+       <tr>
+        <td> <a href="/#/{{$index}}" ng-click="findMeetup($index)" > {{meetup.name}} </a></td>
+       <td> <a href="/#/{{$index}}/edit" ng-click="findMeetup($index)">Edit</a> </td>
+       </tr>
+      </table> 
+    </li>
+</ul>
+       
+<form ng-submit="createMeetup()">
+    <input type="text" ng-model="meetupName" placeholder="Meetup name">
+    <button type="submit">Add</button>
+</form>
+         

@@ -1,1 +1,1 @@
-var meetupApp = angular.module('meetupApp',['ngResource']);
+var meetupApp = angular.module('meetupApp',['ngResource','ngRoute']);
