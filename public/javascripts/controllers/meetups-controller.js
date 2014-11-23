@@ -1,7 +1,9 @@
 
-meetupApp.controller('meetupsController',['$scope','$resource','$routeParams',
-        function($scope,$resource,$routeParams){
-            var MeetupResource = $resource('/meetup'); //this will be the base URL for our rest express rout.
+
+meetupApp.controller('meetupsController',['$scope','$resource','$routeParams','$location','MeetupUpdateService',
+        function($scope,$resource,$routeParams,$location,MeetupUpdateService){
+            var MeetupResource = $resource('/meetup/:id'); //this will be the base URL for our rest express rout.
+          //  var SaveMeetupResource = $resource('meetup/:id/edit');
             $scope.appname = "Mean Demo";
             
             var loadMeetups = function(){
@@ -9,10 +11,12 @@ meetupApp.controller('meetupsController',['$scope','$resource','$routeParams',
                 $scope.meetups = results;
                     if($routeParams.id){
                         console.log("### check id:"+$routeParams.id);
-                        $scope.meetup = $scope.meetups[$routeParams.id]; //for edit and show details views
+                        $scope.findMeetup($routeParams.id);
+                        //$scope.meetup = $scope.meetups[$routeParams.id]; //for edit and show details views
                     }
                 });
             }
+            
             if(!$scope.meetups)
                 loadMeetups();
 
@@ -24,6 +28,46 @@ meetupApp.controller('meetupsController',['$scope','$resource','$routeParams',
                     $scope.meetups.push(result);
                 });
             }
+               
+            
+            $scope.findMeetup = function(_id){
+                $scope.meetupUpdateService = new MeetupUpdateService();
+                $scope.meetupUpdateService.$get({id:_id},function(result){
+                     $scope.meetup = result;
+                }); 
+            }
+            
+            $scope.updateMeetup = function(_id){
+                $scope.meetupUpdateService = new MeetupUpdateService();
+                $scope.meetupUpdateService.name = $scope.meetup.name;
+                $scope.meetupUpdateService.$update({id:_id},function(result){
+                    $location.path("/")
+                });
+            }//updateMeetup
+            
+            $scope.getMeetup = function(_id){
+                $scope.meetupUpdateService = new MeetupUpdateService();
+                $scope.meetupUpdateService.$get({id : _id},function(result){
+                    $scope.meetup = result;
+                    $location.path("/"+_id)
+                });
+                $scope.meetup
+            }//getMeetup
+            
+            
+            
+            $scope.deleteMeetup = function(_id){
+                $scope.meetupUpdateService = new MeetupUpdateService();
+                $scope.meetupUpdateService.$delete({id: _id},function(result){
+                    if(result){
+                      MeetupResource.query(function(results){
+                        $scope.meetups = results;
+                        $location.path("/")
+                      });
+                    }
+                });
+            }//deleteMeetup
+            
         }  
 ]);
 

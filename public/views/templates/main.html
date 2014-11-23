@@ -4,11 +4,11 @@
 </h1>
 <ul>
     <li ng-repeat ="meetup in meetups">
-      <!--  <a href="/#/{{meetup._id}}"> {{meetup.name}} </a>-->
       <table>
        <tr>
-        <td> <a href="/#/{{$index}}" ng-click="findMeetup($index)" > {{meetup.name}} </a></td>
-       <td> <a href="/#/{{$index}}/edit" ng-click="findMeetup($index)">Edit</a> </td>
+        <td> <a href="/#/{{meetup._id}}" ng-click="findMeetup(meetup._id)" > {{meetup.name}} </a></td>
+      <td> <a href="/#/{{meetup._id}}/edit" ng-click="findMeetup(meetup._id)">Edit</a> </td>
+       <td> <button ng-click="deleteMeetup(meetup._id)" >Delete</button></td>
        </tr>
       </table> 
     </li>

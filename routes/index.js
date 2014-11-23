@@ -9,5 +9,7 @@ router.get('/', function(req, res) {
 
 router.post('/meetup',meetupController.create);
 router.get('/meetup',meetupController.getAll);
-
+router.get('/meetup/:id',meetupController.get);
+router.put('/meetup/:id',meetupController.update);
+router.delete('/meetup/:id',meetupController.delete);
 module.exports = router;

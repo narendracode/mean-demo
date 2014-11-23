@@ -1,5 +1,8 @@
 <h3>Edit Meetup Details</h3>
-<form ng-submit="saveMeetup()">
+  <form ng-submit="updateMeetup(meetup._id)">
     <input type="text" ng-model="meetup.name" placeholder="Meetup name">
     <button type="submit">Save</button>
 </form>
+<div>
+    <a href="/#/">Back</a>
+</div>

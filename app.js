@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public/views')));
 app.use('/stylesheets',express.static(path.join(__dirname,'public/javascripts/stylesheets')));
 app.use('/controllers',express.static(path.join(__dirname,'public/javascripts/controllers')));
 app.use('/route-configs',express.static(path.join(__dirname,'public/javascripts/route-configs')));
+app.use('/custom-request',express.static(path.join(__dirname,'public/javascripts/custom-request')));
 app.use('/templates',express.static(path.join(__dirname,'public/views/templates')));
 
 var connect = function(){
