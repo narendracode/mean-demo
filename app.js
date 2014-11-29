@@ -27,6 +27,7 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/views')));
+app.use('/assets',express.static(path.join(__dirname,'public/assets')));
 app.use('/stylesheets',express.static(path.join(__dirname,'public/javascripts/stylesheets')));
 app.use('/controllers',express.static(path.join(__dirname,'public/javascripts/controllers')));
 app.use('/route-configs',express.static(path.join(__dirname,'public/javascripts/route-configs')));
